@@ -40,6 +40,9 @@ config.read('config.ini')
 dirName = config['defaults']['DataFoldername']
 columnStr = config['defaults']['SearchString']
 delaytTime = config['defaults']['EndDelayTime']
+delimmer = config['defaults']['delimiter']
+distanceChar = config['defaults']['DistanceChar']
+
 if delaytTime == "":
     delaytTime = 0
 else:
@@ -56,13 +59,13 @@ if os.path.exists(dirName) == False:
     exit(1)
 ################################################################################################################
 # Distance split in km input
-DistanceKM = input("KM-Eingabe : ")
+DistanceKM = input(distanceChar + "-Eingabe : ")
 if DistanceKM == "":
     print('Keine Eingabe, Application wird beendet !')
     exit(1)
 else:
     DistanceKM = int(DistanceKM)
-    print('Your choice of distance : ', DistanceKM, ' KM')
+    print('Your choice of distance : ', DistanceKM, " " + distanceChar)
 ################################################################################################################
 ################################################################################################################
 # initializing variables:
@@ -90,7 +93,7 @@ if os.path.exists(dirName) == False:
 # reading csv file
 with open(filename, 'r') as csvfile:
     # creating a csv reader object
-    csvreader = csv.reader(csvfile, delimiter = ';')
+    csvreader = csv.reader(csvfile, delimiter = delimmer)
     # extracting field names through first row
     fields = next(csvreader)
     # extracting each data row one by one
@@ -120,7 +123,7 @@ distanecsrec3 = int(distanecsrec / 1000)
 # initial file1 variable
 file1 = False
 # Write resultat file name to the variable
-writefilename = dirName + basename_without_ext + "_till_" + str(distanecsrec3) + "-km.csv"
+writefilename = dirName + basename_without_ext + "_till_" + str(distanecsrec3) + "-" + distanceChar + ".csv"
 
 # Reading rows
 for row in rows:
@@ -146,7 +149,7 @@ for row in rows:
         distanecsrec = distanecsrec + distancesrec2
         file1.close()
         distanecsrec3 = int(distanecsrec / 1000)
-        writefilename = dirName + basename_without_ext + "_till_" + str(distanecsrec3) + "-km.csv"
+        writefilename = dirName + basename_without_ext + "_till_" + str(distanecsrec3) + "-" + distanceChar + ".csv"
         header = ""
     # Process bar steps up
     bar.next()
