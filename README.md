@@ -2,6 +2,7 @@
  Split CSV File on calculated value inside a field
 
 # Short description:
+Simple shell Application - my first try with python and simple programming.
 A value in this example KM Distance, should be searched for and a file should be created every x KM. 
 So a total distance (within a CSV file) should be divided into sections of x KM. From this, x files 
 are then created, it is currently still configured to Km.
